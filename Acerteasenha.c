@@ -1,4 +1,6 @@
 #include "pico/stdlib.h"
+#include <stdio.h>
+
 
 const uint ROW_PINS[4] = {8, 7, 6, 5};     // Linhas: R1, R2, R3, R4
 const uint COL_PINS[4] = {4, 3, 2, 28};    // Colunas: C1, C2, C3, C4
