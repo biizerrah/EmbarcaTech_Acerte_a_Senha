@@ -13,6 +13,9 @@ const char KEYPAD[4][4] = {
     {'4', '5', '6', 'B'},
     {'7', '8', '9', 'C'},
     {'*', '0', '#', 'D'}};
+    
+char set_senha[5];     // Senha criada pelo usuário
+char entered_senha[5]; // Senha digitada
 
 // Função para varrer o teclado e identificar a tecla pressionada
 char scan_keypad()
@@ -55,6 +58,29 @@ void setup_buzzer()
     gpio_init(BUZZER_PIN);
     gpio_set_dir(BUZZER_PIN, GPIO_OUT);
 }
+
+// Função para acender o LED azul
+void led_azul() {
+    gpio_put(LED_PIN1, 1);
+    sleep_ms(2000); // LED azul aceso por 2 segundos
+    gpio_put(LED_PIN1, 0);
+}
+
+// Função para capturar uma senha do teclado
+void captura_senha(char *password) {
+    int index = 0;
+    while (index < 4) {
+        char key = scan_keypad();
+        if (key != '\0' && key >= '0' && key <= '9') {
+            password[index++] = key;
+            printf("Número digitado: %c\n", key);
+        }
+        sleep_ms(100);
+    }
+    password[4] = '\0'; // Finaliza a string
+    printf("Senha capturada: %s\n", password);
+}
+
 int main()
 {
     setup_keyboard();
@@ -67,6 +93,11 @@ int main()
     gpio_set_dir(LED_PIN2, GPIO_OUT);
     gpio_init(LED_PIN3);
     gpio_set_dir(LED_PIN3, GPIO_OUT);
+
+    printf("Defina sua senha (4 dígitos):\n");
+    captura_senha(set_senha); // Captura a senha inicial
+    printf("Senha definida!\n");
+    led_azul(); // Sinaliza o fim da digitação
 
     while (1)
     {
