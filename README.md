@@ -41,4 +41,5 @@ Para configurar o ambiente de desenvolvimento, siga as instruções abaixo:
   git config --global user.name "Seu Nome"
   git config --global user.email "seu.email@exemplo.com"
 
+Aqui está [a apresentação](https://www.youtube.com/watch?v=ivlpjV28Tj8) em forma de vídeo do funcionamento do projeto.
 
